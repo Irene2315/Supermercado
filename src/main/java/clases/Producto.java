@@ -9,9 +9,9 @@ public class Producto {
  private int cantidad;
  private double precio;
  private Date caducidad;
- private int idSeccion;
+ private Seccion idSeccion;
  
-public Producto(int id, String codigo, String nombre, int cantidad, double precio, Date caducidad, int idSeccion) {
+public Producto(int id, String codigo, String nombre, int cantidad, double precio, Date caducidad, Seccion idSeccion) {
 	super();
 	this.id = id;
 	this.codigo = codigo;
@@ -75,11 +75,13 @@ public void setCaducidad(Date caducidad) {
 	this.caducidad = caducidad;
 }
 
-public int getIdSeccion() {
+
+
+public Seccion getIdSeccion() {
 	return idSeccion;
 }
 
-public void setIdSeccion(int idSeccion) {
+public void setIdSeccion(Seccion idSeccion) {
 	this.idSeccion = idSeccion;
 }
 
