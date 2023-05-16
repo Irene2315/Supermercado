@@ -79,6 +79,35 @@ public class ModeloProducto extends Conector{
 		
 		
 	}
+
+	public boolean CodigoDuplicado(String codigo) {
+		PreparedStatement prt;
+		boolean codigoDuplicado = false;
+		
+		try {
+			prt = con.prepareStatement("SELECT  codigo FROM productos WHERE codigo=?");
+			
+			prt.setString(1, codigo);
+			
+			ResultSet result = prt.executeQuery();
+			
+			if (result.next()) {
+				 codigoDuplicado= true;
+			} else {
+				 codigoDuplicado= false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return codigoDuplicado;
+	}
+
+	
 	
 	
 	

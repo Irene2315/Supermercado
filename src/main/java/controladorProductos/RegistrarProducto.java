@@ -59,23 +59,52 @@ public class RegistrarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ModeloProducto productoM = new ModeloProducto();
+		
+		
 		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
 		int cantidad =Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		Date caducidad;
-		Producto producto = new Producto();
-		
+		Date caducidad = new Date();
 		try {
 			caducidad = sdf.parse(request.getParameter("caducidad"));
-			producto.setCaducidad(caducidad);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		productoM.conectar();
+		
+		boolean codigoDupli = productoM.CodigoDuplicado(codigo);
+	
+		productoM.cerrar();
+		
+		if (codigoDupli==true || cantidad<0 || precio<0 || caducidad.before(new Date())) {
+			ModeloSeccion seccioM = new ModeloSeccion();
+			
+			ArrayList <Seccion>  secciones = new ArrayList <>();
+			seccioM.conectar();
+			
+			
+			secciones = seccioM.getSecciones();
+			
+			seccioM.cerrar();
+			
+			request.setAttribute("secciones", secciones);
+			
+			request.getRequestDispatcher("VistaRegistrarProducto.jsp").forward(request, response);
+		}
+		
+		
+		
+		
+		Producto producto = new Producto();
+		
+		
 		
 		Seccion seccion = new Seccion();
 		
@@ -85,7 +114,7 @@ public class RegistrarProducto extends HttpServlet {
 		seccion.setId(id);
 		
 		
-		
+		producto.setCaducidad(caducidad);
 		producto.setCodigo(codigo);
 		producto.setNombre(nombre);
 		producto.setCantidad(cantidad);
@@ -93,11 +122,11 @@ public class RegistrarProducto extends HttpServlet {
 		producto.setIdSeccion(seccion);
 	
 		
-		ModeloProducto productoM = new ModeloProducto();
+		ModeloProducto productoM2 = new ModeloProducto();
 		
-		productoM.conectar();
+		productoM2.conectar();
 		
-		productoM.RegistrarProducto(producto);
+		productoM2.RegistrarProducto(producto);
 		
 		
 		response.sendRedirect("VerProductos");

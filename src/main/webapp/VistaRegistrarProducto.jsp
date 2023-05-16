@@ -16,7 +16,26 @@
 <style>
 
 
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:10px;
+	
+	color: black;
+}
 
+body {
+	background-image: url('https://wallpapercave.com/wp/wp8645275.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.form-container {
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	background-color: white;
+}
 </style>
 </head>
 <body>
@@ -27,23 +46,23 @@
 			<form method="POST" action="RegistrarProducto">
 
 				<p>
-					<b>codigo:</b> <input type="text" name="codigo" required /> <br>
+					<b>codigo:</b> <input type="text" name="codigo"  /> <br>
 				</p>
 				<br>
 				<p>
-					<b>nombre:</b> <input type="text" name="nombre" required/> <br>
+					<b>nombre:</b> <input type="text" name="nombre" /> <br>
 				</p>
 				<br>
 				<p>
-					<b>cantidad</b> <input type="text" name="cantidad" required/> <br>
+					<b>cantidad</b> <input type="text" name="cantidad" /> <br>
 				</p>
 				<br>
 				<p>
-					<b>precio</b> <input type="text" name="precio" required/> <br>
+					<b>precio</b> <input type="text" name="precio" /> <br>
 				</p>
 				<br>
 				<p>
-					<b>caducidad:</b> <input type="date" name="caducidad" required/> <br>
+					<b>caducidad:</b> <input type="date" name="caducidad" /> <br>
 				</p>
 				<br>
 				<p>
