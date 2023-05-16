@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,6 +50,34 @@ public class ModeloProducto extends Conector{
 		
 		
 		return productos;
+	}
+
+	public void RegistrarProducto(Producto producto) {
+		
+		PreparedStatement prt;
+		
+		try {
+			prt = con.prepareStatement("INSERT INTO productos(codigo,nombre,cantidad, precio, caducidad,id_seccion) VALUES (?,?,?,?,?,?)");
+		
+			prt.setString(1, producto.getCodigo());
+			prt.setString(2, producto.getNombre());
+			prt.setInt(3, producto.getCantidad());
+			prt.setDouble(4, producto.getPrecio());
+			
+			prt.setDate(5, new Date (producto.getCaducidad().getTime()));
+			
+			prt.setInt(6, producto.getIdSeccion().getId());
+			
+			prt.execute();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 	
 	

@@ -3,6 +3,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import clases.Seccion;
 import conexion.Conector;
@@ -39,4 +40,33 @@ public Seccion getSeccion (int id) {
 					return seccion;
 			
 	}
+
+public ArrayList<Seccion> getSecciones() {
+	
+	PreparedStatement prt;
+	ArrayList<Seccion>  secciones = new ArrayList<Seccion> ();
+	try {
+		prt = con.prepareStatement("SELECT id,nombre FROM secciones ");
+		
+		ResultSet result = prt.executeQuery();
+		
+		
+		while(result.next()) {
+			Seccion seccion = new Seccion();
+			
+			seccion.setId(result.getInt(1));
+			seccion.setNombre(result.getString(2));
+			
+			secciones.add(seccion);
+			
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	
+	return secciones;
+}
 }
