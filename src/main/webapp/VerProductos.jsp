@@ -36,12 +36,7 @@
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-body {
-	background-image: url('https://wallpapercave.com/wp/wp8645275.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-}
+
 
 .form-container {
 	padding: 20px;

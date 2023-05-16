@@ -41,6 +41,8 @@ public class RegistrarProducto extends HttpServlet {
 		
 		ArrayList <Seccion>  secciones = new ArrayList <>();
 		
+		boolean error= false;
+		
 		seccioM.conectar();
 		
 		
@@ -49,6 +51,8 @@ public class RegistrarProducto extends HttpServlet {
 		seccioM.cerrar();
 		
 		request.setAttribute("secciones", secciones);
+		
+		request.setAttribute("error", error);
 		
 		request.getRequestDispatcher("VistaRegistrarProducto.jsp").forward(request, response);
 		
@@ -89,11 +93,12 @@ public class RegistrarProducto extends HttpServlet {
 			ArrayList <Seccion>  secciones = new ArrayList <>();
 			seccioM.conectar();
 			
-			
+			boolean error=true;
 			secciones = seccioM.getSecciones();
 			
 			seccioM.cerrar();
 			
+			request.setAttribute("error", error);
 			request.setAttribute("secciones", secciones);
 			
 			request.getRequestDispatcher("VistaRegistrarProducto.jsp").forward(request, response);

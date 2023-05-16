@@ -25,11 +25,6 @@
 	color: black;
 }
 
-body {
-	background-image: url('https://wallpapercave.com/wp/wp8645275.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
 .form-container {
 	padding: 20px;
 	border-radius: 10px;
@@ -44,7 +39,11 @@ body {
 			<h1 class="fw-bold">Registrar Producto</h1>
 			
 			<form method="POST" action="RegistrarProducto">
-
+				<c:if test="${error eq true}">
+    						<div class="alert alert-danger" role="alert">
+        					Has introducido el producto incorrectamente!
+    						</div>
+				</c:if>
 				<p>
 					<b>codigo:</b> <input type="text" name="codigo"  /> <br>
 				</p>
