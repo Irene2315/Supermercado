@@ -25,11 +25,7 @@
 	color: black;
 }
 
-body {
-	background-image: url('https://wallpapercave.com/wp/wp8645275.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-}
+
 .form-container {
 	padding: 20px;
 	border-radius: 10px;
