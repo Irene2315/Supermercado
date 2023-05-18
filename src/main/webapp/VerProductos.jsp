@@ -97,14 +97,14 @@
 							<td>${producto.caducidad}</td>
 							<td>${producto.idSeccion.nombre}</td>
 
-							<td><a href="VerProducto?cProducto=${producto.id}"
+							<td><a href="VerProducto?id=${producto.id}"
 								class="btn btn-primary ">Ver </a></td>
 							
 								<td><a
-									href="ModificarProducto?cProducto=${producto.id}"
+									href="ModificarProducto?id=${producto.id}"
 									class="btn btn-secondary ">Modificar </a></td>
 								<td><a
-									href="EliminarProducto?cProducto=${producto.id}"
+									href="EliminarProducto?id=${producto.id}"
 									class="btn btn-danger">eliminar </a></td>
 							
 						</tr>

@@ -1,6 +1,7 @@
 package controladorProductos;
 
 import java.io.IOException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,19 +42,14 @@ public class RegistrarProducto extends HttpServlet {
 		
 		ArrayList <Seccion>  secciones = new ArrayList <>();
 		
-		boolean error= false;
+//		boolean error= false;
 		
 		seccioM.conectar();
-		
-		
 		secciones = seccioM.getSecciones();
-		
 		seccioM.cerrar();
 		
 		request.setAttribute("secciones", secciones);
-		
-		request.setAttribute("error", error);
-		
+//		request.setAttribute("error", error);
 		request.getRequestDispatcher("VistaRegistrarProducto.jsp").forward(request, response);
 		
 	}

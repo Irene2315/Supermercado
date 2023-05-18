@@ -69,4 +69,34 @@ public ArrayList<Seccion> getSecciones() {
 	
 	return secciones;
 }
+
+public Seccion getSeccionId(String nombreSeccion) {
+	
+	PreparedStatement prt;
+	
+	Seccion seccion= new Seccion ();
+	
+	
+	
+			try {
+				prt = con.prepareStatement("SELECT id,nombre FROM `secciones` WHERE nombre=?");
+				
+
+				prt.setString(1, nombreSeccion);
+				
+				ResultSet result = prt.executeQuery();
+				
+				while(result.next()) {
+					seccion.setId(result.getInt(1));
+					seccion.setNombre(result.getString(2));
+					
+			} 
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+				
+				return seccion;
+}
 }
