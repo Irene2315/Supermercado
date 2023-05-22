@@ -64,12 +64,21 @@
 			<h1 class="fw-bold">GESTION DE PRODUCTOS</h1>
 			<form method="get" action="BuscadorCodigoNombre">
 				<p>
-					Codigo o nombre: <input type="text" name="codigoNombre" />
-					<input type="submit" class="btn-primary" value="Buscar">
-					<a href="VerProductos" class="btn btn-dark">Refrescar</a>
+					Codigo o nombre del producto: <input type="text" name="codigoNombre" />
+					<input type="submit" class="btn btn-primary" value="Buscar">
+					
 				</p>
 			</form>
-			
+			<form method="get" action="BuscadorPrecio">
+				<p>
+					Introduce del producto: 
+					<input type="text" name="precioMin"  placeholder="precioMinimo"/>
+					<input type="text" name="precioMax" placeholder="precioMaximo" />
+					<input type="submit" class="btn btn-primary" value="Buscar" >
+					
+				</p>
+			</form>
+			<a href="VerProductos" class="btn btn-dark">Refrescar</a>
 			<table class="table">
 
 				<thead>
