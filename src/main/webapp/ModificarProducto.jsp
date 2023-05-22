@@ -63,7 +63,7 @@
 				</p>
 				<br>
 				<p class="fw-bold">
-					Caducidad: <input type="text" name="caducidad"
+					Caducidad: <input type="date" name="caducidad"
 						value="${producto.caducidad}"  /> <br>
 				</p>
 				<p class="fw-bold">

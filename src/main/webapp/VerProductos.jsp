@@ -62,6 +62,12 @@
 	<div class="container">
 		<div class="form-container">
 			<h1 class="fw-bold">GESTION DE PRODUCTOS</h1>
+			<form method="get" action="BuscadorCodigoNombre">
+				<p>
+					Codigo o nombre: <input type="text" name="codigoNombre" />
+					<input type="submit" class="btn-primary" value="Buscar">
+				</p>
+			</form>
 			<table class="table">
 
 				<thead>
@@ -80,6 +86,7 @@
 						
 							<td><a href="RegistrarProducto" class="btn btn-dark">Registrar
 							</a></td>
+							
 						
 
 					</tr>
