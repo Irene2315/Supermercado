@@ -47,8 +47,7 @@ public class BuscadorCodigoNombre extends HttpServlet {
 			if (!(producto.getCodigo().contains(codigoNombre)) && !(producto.getNombre().contains(codigoNombre))) {
 				it.remove();
 			
-			}
-			
+			}	
 			
 		}
 		request.setAttribute("productos", productos);

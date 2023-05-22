@@ -66,8 +66,10 @@
 				<p>
 					Codigo o nombre: <input type="text" name="codigoNombre" />
 					<input type="submit" class="btn-primary" value="Buscar">
+					<a href="VerProductos" class="btn btn-dark">Refrescar</a>
 				</p>
 			</form>
+			
 			<table class="table">
 
 				<thead>
