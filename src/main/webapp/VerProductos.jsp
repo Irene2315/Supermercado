@@ -101,6 +101,29 @@
 						
 
 					</tr>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<td><a href="OrdenAscendente" class="btn btn-dark">A-Z</a> </td>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						
+					</tr>
+					
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<td><a href="OrdenDescendente" class="btn btn-dark">Z-A</a> </td>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						
+					</tr>
 				</thead>
 				<tbody>
 
