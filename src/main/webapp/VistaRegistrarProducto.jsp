@@ -36,9 +36,12 @@
 <body>
 	<div class="container">
 		<div class="form-container">
+		
 			<h1 class="fw-bold">Registrar Producto</h1>
 			
 			<form method="POST" action="RegistrarProducto">
+			<div class="row 2">
+					<div class="col-5">
 				<c:if test="${error eq true}">
     						<div class="alert alert-danger" role="alert">
         					Has introducido el producto incorrectamente!
@@ -77,8 +80,47 @@
 				
 				<br> <br>
 				</p>
+				
 				<br> <input type="submit" class="btn btn-secondary"
 					value="Guardar" /> <a href="VerProductos" class="btn btn-dark">Volver</a>
+				</div>
+				
+				<div class="col-7">
+				<h1 class="fw-bold">SUPERMERCADOS</h1>
+					<table class="table">
+
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">id</th>
+									<th scope="col">nombre</th>
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${supermercados}" var="supermercado">
+									<tr>
+										<th scope="row"></th>
+										<td>${supermercado.id}</td>
+										<td>${supermercado.nombre}</td>
+
+										<td><input class="form-check-input" type="checkbox"
+											id="flexCheckDefault" value="${supermercado.id}"
+											name="supermercados"></td>
+
+
+									</tr>
+
+								</c:forEach>
+
+
+
+
+							</tbody>
+						</table>
+				</div>
+				</div>
 			</form>
 
 

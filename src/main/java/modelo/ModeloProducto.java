@@ -47,11 +47,12 @@ public class ModeloProducto extends Conector {
 		return productos;
 	}
 
-	public void RegistrarProducto(Producto producto) {
+	public void registrarProducto(Producto producto) {
 
 		PreparedStatement prt;
 
 		try {
+			
 			prt = con.prepareStatement(
 					"INSERT INTO productos(codigo,nombre,cantidad, precio, caducidad,id_seccion) VALUES (?,?,?,?,?,?)");
 
@@ -65,6 +66,8 @@ public class ModeloProducto extends Conector {
 			prt.setInt(6, producto.getIdSeccion().getId());
 
 			prt.execute();
+			
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -159,6 +162,28 @@ public class ModeloProducto extends Conector {
 		
 		
 		
+	}
+
+	public int getProducto(String codigo) {
+		
+		Producto producto = new Producto();
+		PreparedStatement prt;
+		try {
+			prt = con.prepareStatement("SELECT id FROM productos WHERE codigo=?");
+			
+			prt.setString(1, codigo);
+			
+			ResultSet result = prt.executeQuery();
+			
+			if(result.next()) {
+				producto.setId(result.getInt(1));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return producto.getId();
 	}
 
 	

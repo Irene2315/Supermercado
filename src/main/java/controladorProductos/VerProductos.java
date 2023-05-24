@@ -1,6 +1,7 @@
 package controladorProductos;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
+
 import modelo.ModeloProducto;
+
 
 /**
  * Servlet implementation class VerProductos
@@ -42,7 +45,12 @@ public class VerProductos extends HttpServlet {
 		
 		productoM.cerrar();
 		
+		
+		
+		
 		request.setAttribute("productos", productos);
+		
+		
 		
 		request.getRequestDispatcher("VerProductos.jsp").forward(request, response);
 		

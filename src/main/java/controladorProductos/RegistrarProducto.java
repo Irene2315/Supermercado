@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
 import clases.Seccion;
+import clases.Supermercado;
 import modelo.ModeloProducto;
 import modelo.ModeloSeccion;
+import modelo.ModeloSupermercado;
 
 /**
  * Servlet implementation class RegistrarProducto
@@ -48,7 +52,16 @@ public class RegistrarProducto extends HttpServlet {
 		secciones = seccioM.getSecciones();
 		seccioM.cerrar();
 		
+		ModeloSupermercado supermercadoM = new ModeloSupermercado();
+		
+		supermercadoM.conectar();
+		
+		ArrayList <Supermercado> supermercados = supermercadoM.getSupermercados();
+		
+		supermercadoM.cerrar();
+		
 		request.setAttribute("secciones", secciones);
+		request.setAttribute("supermercados", supermercados);
 //		request.setAttribute("error", error);
 		request.getRequestDispatcher("VistaRegistrarProducto.jsp").forward(request, response);
 		
@@ -67,6 +80,10 @@ public class RegistrarProducto extends HttpServlet {
 		int cantidad =Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String[] supermercados = request.getParameterValues("supermercados"); 
+		
+		int[] idsSupermercados = Arrays.stream(supermercados).mapToInt(Integer::parseInt).toArray();
 		
 		Date caducidad = new Date();
 		try {
@@ -121,13 +138,25 @@ public class RegistrarProducto extends HttpServlet {
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
 		producto.setIdSeccion(seccion);
-	
 		
-		ModeloProducto productoM2 = new ModeloProducto();
+		productoM.conectar();
 		
-		productoM2.conectar();
+		productoM.registrarProducto(producto);
 		
-		productoM2.RegistrarProducto(producto);
+		 int  idProducto= productoM.getProducto(codigo);
+		
+		productoM.cerrar();
+		
+		
+		
+		ModeloSupermercado supermercadoM = new ModeloSupermercado();
+		supermercadoM.conectar();
+		for (int i = 0; i < idsSupermercados.length; i++) {
+			
+			supermercadoM.registrarSuperProducto(idProducto, idsSupermercados[i]);
+		}
+		
+		
 		
 		
 		response.sendRedirect("VerProductos");
