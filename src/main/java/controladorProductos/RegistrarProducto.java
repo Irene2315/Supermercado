@@ -155,7 +155,7 @@ public class RegistrarProducto extends HttpServlet {
 		
 		productoM.registrarProducto(producto);
 		
-		 int  idProducto= productoM.getProducto(codigo);
+		 int  idProducto= productoM.getProductoCodigo(codigo);
 		
 		productoM.cerrar();
 		

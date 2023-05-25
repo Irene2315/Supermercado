@@ -43,7 +43,7 @@ public class ModificarProducto extends HttpServlet {
 		
 		productoM.conectar();
 		
-		producto=productoM.getProducto(id);
+		producto=productoM.getProductoId(id);
 		
 		productoM.cerrar();
 		

@@ -1,27 +1,28 @@
 package controladorProductos;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import clases.Producto;
-import modelo.ModeloProSuper;
 import modelo.ModeloProducto;
 
+
 /**
- * Servlet implementation class EliminarProducto
+ * Servlet implementation class EliminarCodigos
  */
-@WebServlet("/EliminarProducto")
-public class EliminarProducto extends HttpServlet {
+@WebServlet("/EliminarCodigos")
+public class EliminarCodigos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarProducto() {
+    public EliminarCodigos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,57 +31,41 @@ public class EliminarProducto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		
-		Producto producto = new Producto();
-		
 		ModeloProducto productoM = new ModeloProducto();
 		
-		ModeloProSuper proSupM = new ModeloProSuper();
 		
+		String codigosProductosTxurro = request.getParameter("codigoProducto");
+		String[] codigosProductos = codigosProductosTxurro.split(",");
+		boolean hayProducto =false;
+	
 		productoM.conectar();
 		
-		producto=productoM.getProductoId(id);
-		
+		for (int i = 0; i < codigosProductos.length; i++) {
+			
+			 hayProducto =false;
+			
+			String codigoProducto = codigosProductos[i];
+			
+			hayProducto= productoM.productoExiste(codigoProducto);
+			
+			if (hayProducto==false) {
+				break;
+			}
+			
+	}	
 		productoM.cerrar();
 		
-		proSupM.conectar();
-		
-		boolean productoSuper = proSupM.productoEnSupermercados(id);
-		
-		
-		proSupM.cerrar();
-		
-		if (producto.getCantidad()>0) {
+		if(hayProducto==true) {
 			productoM.conectar();
-			productoM.disminuirCantidad(producto);
+			
+			for (int i = 0; i < codigosProductos.length; i++) {
+				
+				productoM.eliminarProductoCodigo(codigosProductos[i]);
+			}
 			productoM.cerrar();
 		}
 		
-		else if (producto.getCantidad()==0 && productoSuper==true ) {
-			
-			
-			proSupM.conectar();
-			proSupM.eliminarRelacionSuper(id);
-			proSupM.cerrar();
-			
-		}
-		
-		else if (producto.getCantidad()==0 && productoSuper==false ) {
-			
-			productoM.conectar();
-			
-			productoM.eliminarProductoId(id);
-			
-			productoM.cerrar();
-			
-		}
-		
-		
-		response.sendRedirect("VerProductos");
-		
+		 response.sendRedirect("VerProductos");
 	}
 
 	/**

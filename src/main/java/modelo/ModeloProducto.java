@@ -101,7 +101,7 @@ public class ModeloProducto extends Conector {
 		return codigoDuplicado;
 	}
 
-	public Producto getProducto(int id) {
+	public Producto getProductoId(int id) {
 
 		ModeloSeccion mSeccion = new ModeloSeccion();
 		mSeccion.setConexion(this.con);
@@ -164,7 +164,7 @@ public class ModeloProducto extends Conector {
 		
 	}
 
-	public int getProducto(String codigo) {
+	public int getProductoCodigo(String codigo) {
 		
 		Producto producto = new Producto();
 		PreparedStatement prt;
@@ -208,7 +208,7 @@ public class ModeloProducto extends Conector {
 		
 	}
 
-	public void eliminarProducto(int id) {
+	public void eliminarProductoId(int id) {
 		
 		PreparedStatement prt;
 		
@@ -227,6 +227,56 @@ public class ModeloProducto extends Conector {
 		
 		
 		
+	}
+	
+public void eliminarProductoCodigo(String codigo) {
+		
+		PreparedStatement prt;
+		
+		try {
+			prt = con.prepareStatement("DELETE FROM productos WHERE codigo=?");
+			
+			
+			prt.setString(1, codigo);
+			
+			prt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+	public boolean productoExiste(String codigoProducto) {
+		
+		PreparedStatement prt;
+		boolean existe=false;
+		
+		try {
+			prt = con.prepareStatement("SELECT id FROM productos WHERE codigo=?");
+			
+			prt.setString(1, codigoProducto);
+			
+			ResultSet result = prt.executeQuery();
+			
+			if(result.next()) {
+				existe=true;
+			}
+			
+			else {
+				existe=false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return existe;
 	}
 
 	

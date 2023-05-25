@@ -69,6 +69,13 @@
 					
 				</p>
 			</form>
+			<form method="get" action="EliminarCodigos">
+				<p>
+					Codigo de productos que quieras eliminar: <input type="text" name="codigoProducto" placeholder="   Ej: a,b " />
+					<input type="submit" class="btn btn-danger"  value="EliminarProductos">
+					
+				</p>
+			</form>
 			<form method="get" action="BuscadorPrecio">
 				<p>
 					Introduce del producto: 
