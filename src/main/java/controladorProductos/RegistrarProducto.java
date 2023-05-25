@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import clases.Producto;
 import clases.Seccion;
 import clases.Supermercado;
+import modelo.ModeloProSuper;
 import modelo.ModeloProducto;
 import modelo.ModeloSeccion;
 import modelo.ModeloSupermercado;
@@ -111,6 +112,17 @@ public class RegistrarProducto extends HttpServlet {
 			
 			seccioM.cerrar();
 			
+			ModeloSupermercado supermercadoM = new ModeloSupermercado();
+			
+			supermercadoM.conectar();
+			
+			ArrayList <Supermercado> supermercados2 = supermercadoM.getSupermercados();
+			
+			supermercadoM.cerrar();
+			
+			request.setAttribute("secciones", secciones);
+			request.setAttribute("supermercados", supermercados2);
+			
 			request.setAttribute("error", error);
 			request.setAttribute("secciones", secciones);
 			
@@ -149,15 +161,15 @@ public class RegistrarProducto extends HttpServlet {
 		
 		
 		
-		ModeloSupermercado supermercadoM = new ModeloSupermercado();
-		supermercadoM.conectar();
+		ModeloProSuper proSupM = new ModeloProSuper();
+		proSupM.conectar();
 		for (int i = 0; i < idsSupermercados.length; i++) {
 			
-			supermercadoM.registrarSuperProducto(idProducto, idsSupermercados[i]);
+			proSupM.registrarSuperProducto(idProducto, idsSupermercados[i]);
 		}
 		
 		
-		
+		proSupM.cerrar();
 		
 		response.sendRedirect("VerProductos");
 		

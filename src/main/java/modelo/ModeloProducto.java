@@ -186,6 +186,49 @@ public class ModeloProducto extends Conector {
 		return producto.getId();
 	}
 
+
+	public void disminuirCantidad(Producto producto) {
+		
+		PreparedStatement prt;
+		
+		try {
+			prt = con.prepareStatement("UPDATE productos SET cantidad=? WHERE id=?");
+			prt.setInt(2, producto.getId());
+			prt.setInt(1, producto.getCantidad()-1);
+			
+			prt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+	}
+
+	public void eliminarProducto(int id) {
+		
+		PreparedStatement prt;
+		
+		try {
+			prt = con.prepareStatement("DELETE FROM productos WHERE id=?");
+			
+			
+			prt.setInt(1, id);
+			
+			prt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
 	
 
 }

@@ -40,26 +40,7 @@ public class ModeloSupermercado extends Conector {
 
 	
 
-	public void registrarSuperProducto(int idProducto, int idSupermercado) {
-		
-		PreparedStatement prt;
-		
-		try {
-			prt = con.prepareStatement("INSERT INTO productos_supermercados(id_producto, id_supermercado) VALUES (?,?)");
-		
-			prt.setInt(1, idProducto);
-			prt.setInt(2, idSupermercado);
-			
-			prt.execute();
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-	}
+	
 	
 	
 }
