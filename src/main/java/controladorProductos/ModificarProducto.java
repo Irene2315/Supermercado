@@ -3,6 +3,7 @@ package controladorProductos;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -38,8 +39,11 @@ public class ModificarProducto extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		Producto producto = new Producto();
+		ArrayList <Seccion> secciones = new ArrayList<>();
 		
 		ModeloProducto productoM = new ModeloProducto();
+		
+		ModeloSeccion seccionM = new ModeloSeccion();
 		
 		productoM.conectar();
 		
@@ -47,7 +51,13 @@ public class ModificarProducto extends HttpServlet {
 		
 		productoM.cerrar();
 		
+		seccionM.conectar();
+		secciones=seccionM.getSecciones();
+		seccionM.cerrar();
+		
+		
 		request.setAttribute("producto", producto);
+		request.setAttribute("secciones", secciones);
 		request.getRequestDispatcher("ModificarProducto.jsp").forward(request, response);
 	}
 
@@ -70,10 +80,9 @@ public class ModificarProducto extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String nombreSeccion = request.getParameter("nombreSeccion");
-		/*
-		int idSeccion = Integer.parseInt("idSeccion");
-		*/
+		
+		int idSeccion = Integer.parseInt(request.getParameter("seccion"));
+		
 		
 		Producto producto = new Producto();
 		
@@ -84,20 +93,13 @@ public class ModificarProducto extends HttpServlet {
 		producto.setPrecio(precio);
 		producto.setCaducidad(caducidad);
 		
+		
+		
+		
 		Seccion seccion = new Seccion();
-		ModeloSeccion mSeccion = new ModeloSeccion();
-		
-		mSeccion.conectar();
-		seccion=mSeccion.getSeccionId(nombreSeccion);
-		mSeccion.cerrar();
-		
-		producto.setIdSeccion(seccion);
-		
-		/*
-		 Seccion seccion = new Seccion();
 		seccion.setId(idSeccion);
 		producto.setIdSeccion(seccion);
-		*/
+		
 		
 		ModeloProducto mProducto = new ModeloProducto();
 		

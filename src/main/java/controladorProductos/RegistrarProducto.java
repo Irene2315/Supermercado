@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Iterator;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -95,6 +95,10 @@ public class RegistrarProducto extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		int id =Integer.parseInt(request.getParameter("seccion"));
+		
+		
+		
 		productoM.conectar();
 		
 		boolean codigoDupli = productoM.CodigoDuplicado(codigo);
@@ -139,7 +143,7 @@ public class RegistrarProducto extends HttpServlet {
 		Seccion seccion = new Seccion();
 		
 
-		int id =Integer.parseInt(request.getParameter("seccion"));
+		
 		
 		seccion.setId(id);
 		
