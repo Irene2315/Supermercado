@@ -85,6 +85,17 @@
 					
 				</p>
 			</form>
+			
+			<form method="get" action="BuscadorFecha">
+				<p>
+					Introduce el intervalo de fechas: 
+					<input type="date" name="fechaInicio"  />
+					<input type="date" name="fechaFin"  />
+					<input type="submit" class="btn btn-primary" value="Buscar" >
+					
+				</p>
+			</form>
+			
 			<a href="VerProductos" class="btn btn-dark">Refrescar</a>
 			<table class="table">
 			<thead>
