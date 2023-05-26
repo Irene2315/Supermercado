@@ -86,14 +86,57 @@
 				</p>
 			</form>
 			<a href="VerProductos" class="btn btn-dark">Refrescar</a>
-			
+			<table class="table">
+			<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+							
+						
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+							
+						
+							
+						
+
+					</tr>
+			</thead>
+			<tbody>
+				<tr>
+						<th scope="col"></th>
+						
+						
+						<td><a href="OrdenAscendente" class="btn btn-dark " style="margin-left:40px;">0-9</a> </td>
+						
+						
+					</tr>
+					
+					<tr>
+						<th scope="col"></th>
+						
+						<td><a href="OrdenDescendente" class="btn btn-dark" style="margin-left:40px;">9-0</a> </td>
+						
+						
+					</tr>
+			</tbody>
+			</table>
 			<form method="get" action="EliminarProductosChecbox"> 
 			
 				<table class="table">
-
+				
 				<thead>
 				
 					<tr>
+						<th scope="col"></th>
 						<th scope="col">#</th>
 						<th scope="col">id</th>
 						<th scope="col">codigo</th>
@@ -101,10 +144,11 @@
 						<th scope="col">cantidad</th>
 						<th scope="col">precio</th>
 						<th scope="col">caducidad</th>
+						<th scope="col">seccion</th>
 							
 						
 						<th scope="col"></th>
-						<th scope="col"></th>
+						
 						
 							<td><a href="RegistrarProducto" class="btn btn-dark">Registrar
 							</a></td>
@@ -112,29 +156,7 @@
 						
 
 					</tr>
-					<tr>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<td><a href="OrdenAscendente" class="btn btn-dark">0-9</a> </td>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						
-					</tr>
 					
-					<tr>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<td><a href="OrdenDescendente" class="btn btn-dark">9-0</a> </td>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						<th scope="col"></th>
-						
-					</tr>
 				</thead>
 				<tbody>
 
@@ -152,8 +174,7 @@
 							<td>${producto.caducidad}</td>
 							<td>${producto.idSeccion.nombre}</td>
 
-							<td><a href="VerProducto?id=${producto.id}"
-								class="btn btn-primary ">Ver </a></td>
+							
 							
 								<td><a
 									href="ModificarProducto?id=${producto.id}"
