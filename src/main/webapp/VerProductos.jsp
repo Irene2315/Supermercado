@@ -86,9 +86,13 @@
 				</p>
 			</form>
 			<a href="VerProductos" class="btn btn-dark">Refrescar</a>
-			<table class="table">
+			
+			<form method="get" action="EliminarProductosChecbox"> 
+			
+				<table class="table">
 
 				<thead>
+				
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">id</th>
@@ -97,7 +101,7 @@
 						<th scope="col">cantidad</th>
 						<th scope="col">precio</th>
 						<th scope="col">caducidad</th>
-						<th scope="col">id_seccion</th>
+							
 						
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -111,7 +115,7 @@
 					<tr>
 						<th scope="col"></th>
 						<th scope="col"></th>
-						<td><a href="OrdenAscendente" class="btn btn-dark">A-Z</a> </td>
+						<td><a href="OrdenAscendente" class="btn btn-dark">0-9</a> </td>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -123,7 +127,7 @@
 					<tr>
 						<th scope="col"></th>
 						<th scope="col"></th>
-						<td><a href="OrdenDescendente" class="btn btn-dark">Z-A</a> </td>
+						<td><a href="OrdenDescendente" class="btn btn-dark">9-0</a> </td>
 						<th scope="col"></th>
 						<th scope="col"></th>
 						<th scope="col"></th>
@@ -137,6 +141,9 @@
 					<c:forEach items="${productos}" var="producto">
 						<tr>
 							<th scope="row"></th>
+							<td><input class="form-check-input" type="checkbox"
+							id="flexCheckDefault" value="${producto.id}"
+							name="productos"></td>
 							<td>${producto.id}</td>
 							<td>${producto.codigo}</td>
 							<td>${producto.nombre}</td>
@@ -163,6 +170,8 @@
 
 				</tbody>
 			</table>
+				<input type="submit" class="btn btn-danger" value="Eliminar Productos Seleccionados" >
+			</form>
 		</div>
 	</div>
 
