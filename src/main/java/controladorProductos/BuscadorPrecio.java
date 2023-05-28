@@ -45,15 +45,12 @@ public class BuscadorPrecio extends HttpServlet {
 		Iterator<Producto> it = productos.iterator();
 		while (it.hasNext()) {
 			Producto producto = it.next();
-			
 			if((producto.getPrecio()<precioMin) || (producto.getPrecio()>precioMax)) {
 				it.remove();
 			}
 		}
-		
 		request.setAttribute("productos", productos);
 		request.getRequestDispatcher("VerProductos.jsp").forward(request, response);
-		
 	}
 
 	/**

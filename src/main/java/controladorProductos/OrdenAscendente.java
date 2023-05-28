@@ -20,44 +20,24 @@ import modelo.ModeloProducto;
 public class OrdenAscendente extends HttpServlet implements Comparator <Producto> {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public OrdenAscendente()  {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	ModeloProducto productoM = new ModeloProducto();
 	
 	productoM.conectar();
-	
 	ArrayList <Producto> productos = productoM.getProductos();
-	
 	productoM.cerrar();
-	
 	
 	productos.sort(this);
 	
 	request.setAttribute("productos", productos);
 	
-	request.getRequestDispatcher("VerProductos.jsp").forward(request, response);
-			
-			
-		
-
-		
+	request.getRequestDispatcher("VerProductos.jsp").forward(request, response);		
 	}
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -70,6 +50,5 @@ public class OrdenAscendente extends HttpServlet implements Comparator <Producto
 		Producto product2 = (Producto) o2;
 		return (product1.getCodigo().compareTo(product2.getCodigo()));
 	}
-
 }
 

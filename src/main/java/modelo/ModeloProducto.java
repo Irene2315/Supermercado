@@ -254,18 +254,15 @@ public void eliminarProductoCodigo(String codigo) {
 		
 		PreparedStatement prt;
 		boolean existe=false;
-		
 		try {
 			prt = con.prepareStatement("SELECT id FROM productos WHERE codigo=?");
 			
 			prt.setString(1, codigoProducto);
-			
 			ResultSet result = prt.executeQuery();
 			
 			if(result.next()) {
 				existe=true;
 			}
-			
 			else {
 				existe=false;
 			}
@@ -273,9 +270,6 @@ public void eliminarProductoCodigo(String codigo) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		return existe;
 	}
 

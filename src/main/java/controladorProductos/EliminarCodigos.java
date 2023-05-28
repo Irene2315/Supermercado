@@ -33,25 +33,19 @@ public class EliminarCodigos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModeloProducto productoM = new ModeloProducto();
 		
-		
 		String codigosProductosTxurro = request.getParameter("codigoProducto");
 		String[] codigosProductos = codigosProductosTxurro.split(",");
 		boolean hayProducto =false;
 	
 		productoM.conectar();
-		
 		for (int i = 0; i < codigosProductos.length; i++) {
 			
 			 hayProducto =false;
-			
 			String codigoProducto = codigosProductos[i];
-			
 			hayProducto= productoM.productoExiste(codigoProducto);
-			
 			if (hayProducto==false) {
 				break;
 			}
-			
 	}	
 		productoM.cerrar();
 		
@@ -59,12 +53,11 @@ public class EliminarCodigos extends HttpServlet {
 			productoM.conectar();
 			
 			for (int i = 0; i < codigosProductos.length; i++) {
-				
 				productoM.eliminarProductoCodigo(codigosProductos[i]);
 			}
 			productoM.cerrar();
 		}
-		
+	
 		 response.sendRedirect("VerProductos");
 	}
 
