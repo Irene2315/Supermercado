@@ -84,7 +84,7 @@ public class RegistrarProducto extends HttpServlet {
 		
 		String[] supermercados = request.getParameterValues("supermercados"); 
 		
-		int[] idsSupermercados = Arrays.stream(supermercados).mapToInt(Integer::parseInt).toArray();
+		//int[] idsSupermercados = Arrays.stream(supermercados).mapToInt(Integer::parseInt).toArray();
 		
 		Date caducidad = new Date();
 		try {
@@ -167,9 +167,15 @@ public class RegistrarProducto extends HttpServlet {
 		
 		ModeloProSuper proSupM = new ModeloProSuper();
 		proSupM.conectar();
-		for (int i = 0; i < idsSupermercados.length; i++) {
+		/*for (int i = 0; i < idsSupermercados.length; i++) {
 			
 			proSupM.registrarSuperProducto(idProducto, idsSupermercados[i]);
+		}*/
+		for (String supermercado : supermercados) {
+			
+		    int idSupermercado = Integer.parseInt(supermercado);
+		    proSupM.registrarSuperProducto(idProducto, idSupermercado);
+		
 		}
 		
 		

@@ -31,16 +31,21 @@ public class EliminarProductosChecbox extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] productos = request.getParameterValues("productos"); 
-		int[] idsProductos = Arrays.stream(productos).mapToInt(Integer::parseInt).toArray();
+		//int[] idsProductos = Arrays.stream(productos).mapToInt(Integer::parseInt).toArray();
 		
 		ModeloProducto productoM = new ModeloProducto();
 		
 		productoM.conectar();
-		for (int i = 0; i < idsProductos.length; i++) {
+		/*for (int i = 0; i < idsProductos.length; i++) {
 			
 			productoM.eliminarProductoId(idsProductos[i]);
 			
+		}*/
+		for (String producto : productos) {
+			int idProducto = Integer.parseInt(producto);
+			productoM.eliminarProductoId(idProducto);
 		}
+		
 		productoM.cerrar();
 		
 		response.sendRedirect("VerProductos");
