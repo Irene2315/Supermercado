@@ -3,6 +3,7 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import conexion.Conector;
 
@@ -79,5 +80,41 @@ public void eliminarRelacionSuper(int idProducto) {
 	
 	
 }
+
+public ArrayList<Integer> ListaDeSupermercadosDeProducto(int idProducto) {
+	
+	ArrayList<Integer> idSupers = new ArrayList<>();
+	PreparedStatement prt;
+	
+	
+	try {
+		prt = con.prepareStatement("SELECT id_supermercado FROM productos_supermercados WHERE id_producto=?");
+	
+		prt.setInt(1, idProducto);
+		ResultSet result = prt.executeQuery();
+		
+		while(result.next()) {
+			int idSuper;
+			
+			idSuper = result.getInt(1);
+			
+			idSupers.add(idSuper);
+			
+		}
+		
+	
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	return idSupers;
+	
+	
+	
+}
+
+
 
 }

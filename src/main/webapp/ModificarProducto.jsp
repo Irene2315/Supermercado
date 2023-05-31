@@ -82,7 +82,51 @@
 							</c:if>
 						</c:forEach>
 					</select>
-				<br> <input type="submit" class="btn btn-secondary"
+					
+					
+					<h1 class="fw-bold">SUPERMERCADOS</h1>
+					<table class="table">
+
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">id</th>
+									<th scope="col">nombre</th>
+									<th></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${supermercados}" var="supermercado">
+									<tr>
+										<th scope="row"></th>
+										<td>${supermercado.id}</td>
+										<td>${supermercado.nombre}</td>
+
+										<td>
+										<input class="form-check-input" type="checkbox"
+											 id="flexCheckDefault" value="${supermercado.id}"
+											 name="supermercados" 
+											 <c:forEach  items="${SupermercadosDeProducto}" var="SupermercadoDeProducto">
+											 <c:if test="${SupermercadoDeProducto == supermercado.id }">checked</c:if>  
+											 </c:forEach>>
+											 
+										</td>
+
+
+										
+
+									</tr>
+
+								</c:forEach>
+
+
+
+
+							</tbody>
+						</table>
+						
+						<br> <input type="submit" class="btn btn-secondary"
 					value="Enviar" /> <a href="VerProductos" class="btn btn-dark">Volver</a>
 			</form>
 		</div>
