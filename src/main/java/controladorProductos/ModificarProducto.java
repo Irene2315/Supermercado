@@ -14,8 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
 import clases.Seccion;
+import clases.Supermercado;
+import modelo.ModeloProSuper;
 import modelo.ModeloProducto;
 import modelo.ModeloSeccion;
+import modelo.ModeloSupermercado;
 
 /**
  * Servlet implementation class ModificarProducto
@@ -45,6 +48,9 @@ public class ModificarProducto extends HttpServlet {
 		
 		ModeloSeccion seccionM = new ModeloSeccion();
 		
+		ModeloProSuper prosupM = new ModeloProSuper();
+		
+		ModeloSupermercado superM = new ModeloSupermercado();
 		productoM.conectar();
 		
 		producto=productoM.getProductoId(id);
@@ -56,6 +62,22 @@ public class ModificarProducto extends HttpServlet {
 		seccionM.cerrar();
 		
 		
+		superM.conectar();
+		
+		ArrayList<Supermercado> supermercados = superM.getSupermercados();
+		
+		superM.cerrar();
+		
+		prosupM.conectar();
+		boolean productoSupermercado = prosupM.productoEnSupermercados(id);
+		if (productoSupermercado ==true) {
+			ArrayList<Integer> supermercadosDeProducto = prosupM.ListaDeSupermercadosDeProducto(id);
+
+			request.setAttribute("SupermercadosDeProducto", supermercadosDeProducto);
+		}
+		prosupM.cerrar();
+		
+		request.setAttribute("supermercados", supermercados);
 		request.setAttribute("producto", producto);
 		request.setAttribute("secciones", secciones);
 		request.getRequestDispatcher("ModificarProducto.jsp").forward(request, response);
