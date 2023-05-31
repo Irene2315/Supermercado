@@ -70,7 +70,8 @@ public class ModificarProducto extends HttpServlet {
 		
 		prosupM.conectar();
 		boolean productoSupermercado = prosupM.productoEnSupermercados(id);
-		if (productoSupermercado ==true) {
+		
+		if (productoSupermercado) {
 			ArrayList<Integer> supermercadosDeProducto = prosupM.ListaDeSupermercadosDeProducto(id);
 
 			request.setAttribute("SupermercadosDeProducto", supermercadosDeProducto);
@@ -95,6 +96,8 @@ public class ModificarProducto extends HttpServlet {
 		
 		SimpleDateFormat spd = new SimpleDateFormat("yyyy-MM-dd");
 		Date caducidad = new Date();
+		
+		
 		try {
 			caducidad = spd.parse(request.getParameter("caducidad"));
 		} catch (ParseException e) {
@@ -105,6 +108,7 @@ public class ModificarProducto extends HttpServlet {
 		
 		int idSeccion = Integer.parseInt(request.getParameter("seccion"));
 		
+		String[] supermercados = request.getParameterValues("supermercados"); 
 		
 		Producto producto = new Producto();
 		
@@ -130,6 +134,20 @@ public class ModificarProducto extends HttpServlet {
 		mProducto.modificarProducto(producto);
 		
 		mProducto.cerrar();
+		
+		ModeloProSuper proSupM = new ModeloProSuper();
+		proSupM.conectar();
+		proSupM.eliminarRelacionSuper(id);
+		for (String supermercado : supermercados) {
+			
+		    int idSupermercado = Integer.parseInt(supermercado);
+		    proSupM.registrarSuperProducto(id, idSupermercado);
+		
+		}
+		proSupM.cerrar();
+		
+		proSupM.cerrar();
+		
 		
 		response.sendRedirect("VerProductos");
 		

@@ -103,11 +103,18 @@
 										<td>${supermercado.id}</td>
 										<td>${supermercado.nombre}</td>
 
-										<td><input class="form-check-input" type="checkbox"
-											id="flexCheckDefault" value="${supermercado.id}"
-											name="supermercados" 
-											<c:if test="${SupermercadosDeProducto == supermercado.id }">checked</c:if>></td>
+										<td>
+										<input class="form-check-input" type="checkbox"
+											 id="flexCheckDefault" value="${supermercado.id}"
+											 name="supermercados" 
+											 <c:forEach  items="${SupermercadosDeProducto}" var="SupermercadoDeProducto">
+											 <c:if test="${SupermercadoDeProducto == supermercado.id }">checked</c:if>  
+											 </c:forEach>>
+											 
+										</td>
 
+
+										
 
 									</tr>
 
